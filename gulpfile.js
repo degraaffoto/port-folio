@@ -41,18 +41,19 @@ gulp.task('browser-sync', ['sass', 'jekyll-build'], function() {
 /**
  * Compile files from _scss into both _site/css (for live injecting) and site (for future jekyll builds)
  */
-gulp.task('sass', function () {
-    return gulp.src('_scss/main.scss')
-        .pipe(sass({
-            includePaths: ['scss'],
-            onError: browserSync.notify
-        }))
-        .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
-        .pipe(gulp.dest('_site/css'))
-        .pipe(browserSync.reload({stream:true}))
-        .pipe(gulp.dest('css'));
-});
+ gulp.task('sass', function () {
+     return gulp.src('assets/css/main.scss')
+         .pipe(sass({
+             includePaths: ['css'],
+             onError: browserSync.notify
+         }))
+         .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
+         .pipe(gulp.dest('_site/assets/css'))
+         .pipe(browserSync.reload({stream:true}))
+         .pipe(gulp.dest('assets/css'));
+ });
 
+ 
 /**
  * Watch scss files for changes & recompile
  * Watch html/md files, run jekyll & reload BrowserSync
